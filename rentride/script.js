@@ -3,6 +3,11 @@
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const nav = document.querySelector(".nav");
 
+  // Enable entrance motion only after first paint so content is never blank
+  requestAnimationFrame(() => {
+    document.documentElement.classList.add("motion-on");
+  });
+
   const onScroll = () => {
     if (!header) return;
     header.classList.toggle("is-scrolled", window.scrollY > 16);
@@ -46,7 +51,6 @@
     steps.forEach((step) => step.classList.add("is-in"));
   }
 
-  // Sensible default dates for the search form
   const pickup = document.querySelector('input[name="pickup"]');
   const ret = document.querySelector('input[name="return"]');
   if (pickup && ret) {
